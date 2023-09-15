@@ -1,53 +1,131 @@
-import { useState } from "react";
-import Update from "@/components/update";
-import logoVite from "./assets/logo-vite.svg";
-import logoElectron from "./assets/logo-electron.svg";
+import {
+  AppShell,
+  Navbar,
+  Header,
+  Group,
+  ThemeIcon,
+  UnstyledButton,
+  Text,
+} from "@mantine/core";
+import {
+  IconUserCircle,
+  IconBrandZoom,
+  IconBulb,
+  IconReceipt,
+} from "@tabler/icons-react";
+import Profile from "./pages/Profile";
+import Meetings from "./pages/Meetings";
+import Insights from "./pages/Insights";
+import Billing from "./pages/Billing";
 
-console.log(
-  "[App.tsx]",
-  `Hello world from Electron ${process.versions.electron}!`
-);
+import { useState } from "react";
+interface MainLinkProps {
+  icon: React.ReactNode;
+  color: string;
+  label: string;
+  onClick: () => void;
+}
+
+type page = "Profile" | "Meetings" | "Insights" | "Billing";
+
+function MainLink({ icon, color, label, onClick }: MainLinkProps) {
+  return (
+    <UnstyledButton
+      sx={(theme) => ({
+        display: "block",
+        width: "100%",
+        padding: theme.spacing.xs,
+        borderRadius: theme.radius.sm,
+        color:
+          theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.black,
+
+        "&:hover": {
+          backgroundColor:
+            theme.colorScheme === "dark"
+              ? theme.colors.dark[6]
+              : theme.colors.gray[0],
+        },
+      })}
+      onClick={onClick}
+    >
+      <Group>
+        <ThemeIcon color={color} variant="light">
+          {icon}
+        </ThemeIcon>
+
+        <Text size="sm">{label}</Text>
+      </Group>
+    </UnstyledButton>
+  );
+}
+
+interface data {
+  icon: React.ReactNode;
+  color: string;
+  label: page;
+}
+
+const data: data[] = [
+  {
+    icon: <IconUserCircle size="1rem" />,
+    color: "blue",
+    label: "Profile",
+  },
+  {
+    icon: <IconBrandZoom size="1rem" />,
+    color: "teal",
+    label: "Meetings",
+  },
+  { icon: <IconBulb size="1rem" />, color: "violet", label: "Insights" },
+  { icon: <IconReceipt size="1rem" />, color: "grape", label: "Billing" },
+];
 
 function App() {
-  const [count, setCount] = useState(0);
-  return (
-    <div className="App">
-      <div className="logo-box">
-        <a
-          href="https://github.com/electron-vite/electron-vite-react"
-          target="_blank"
-        >
-          <img
-            src={logoVite}
-            className="logo vite"
-            alt="Electron + Vite logo"
-          />
-          <img
-            src={logoElectron}
-            className="logo electron"
-            alt="Electron + Vite logo"
-          />
-        </a>
-      </div>
-      <h1>Electron + Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Electron + Vite logo to learn more
-      </p>
-      <div className="flex-center">
-        Place static files into the<code>/public</code> folder{" "}
-        <img style={{ width: "5em" }} src="./node.svg" alt="Node logo" />
-      </div>
+  const [currentPage, setCurrentPage] = useState<page>("Profile");
 
-      <Update />
-    </div>
+  const pages = {
+    Profile: <Profile />,
+    Meetings: <Meetings />,
+    Insights: <Insights />,
+    Billing: <Billing />,
+  };
+
+  function MainLinks() {
+    const links = data.map((link) => (
+      <MainLink
+        {...link}
+        key={link.label}
+        onClick={() => setCurrentPage(link.label)}
+      />
+    ));
+    return <div>{links}</div>;
+  }
+  return (
+    <AppShell
+      padding="md"
+      navbar={
+        <Navbar width={{ base: 300 }} height={500} p="xs">
+          <Navbar.Section grow mt="md">
+            <MainLinks />
+          </Navbar.Section>
+        </Navbar>
+      }
+      header={
+        <Header height={60} p="xs">
+          Umm Counter App
+        </Header>
+      }
+      styles={(theme) => ({
+        main: {
+          backgroundColor:
+            theme.colorScheme === "dark"
+              ? theme.colors.dark[8]
+              : theme.colors.gray[0],
+        },
+      })}
+    >
+      {pages[currentPage]}
+    </AppShell>
   );
 }
 
