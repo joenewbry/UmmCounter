@@ -1,0 +1,40 @@
+{
+  "name": "desktop",
+  "version": "0.1.0",
+  "main": "dist-electron/main/index.js",
+  "description": "Umm Counter desktop app",
+  "author": "Joe Newbry <joenewbry@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && electron-builder",
+    "preview": "vite preview",
+    "pree2e": "vite build --mode=test",
+    "e2e": "playwright test"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@mantine/core": "^6.0.20",
+    "@mantine/hooks": "^6.0.20",
+    "@tabler/icons-react": "^2.34.0",
+    "electron-updater": "^6.1.1",
+    "firebase": "^10.4.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.37.1",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.4",
+    "electron": "^26.0.0",
+    "electron-builder": "^24.6.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9",
+    "vite-plugin-electron": "^0.13.0-beta.3",
+    "vite-plugin-electron-renderer": "^0.14.5"
+  },
+  "engines": {
+    "node": "^14.18.0 || >=16.0.0"
+  }
+}
