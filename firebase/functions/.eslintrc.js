@@ -1,34 +1,37 @@
-import path from "path";
-
 module.exports = {
-  root: true,
   env: {
-    es6: true,
-    node: true,
+    browser: true,
+    es2021: true,
   },
-  extends: [
-    "eslint:recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
-    "google",
-    "plugin:@typescript-eslint/recommended",
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
+  },
+
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  overrides: [
+    {
+      env: {
+        node: true,
+      },
+      files: ['.eslintrc.{js,cjs}'],
+      parserOptions: {
+        sourceType: 'script',
+      },
+    },
   ],
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: [
-      path.join(__dirname, "tsconfig.json"),
-      path.join(__dirname, "tsconfig.dev.json"),
-    ],
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  ignorePatterns: [
-    "/lib/**/*", // Ignore built files.
-  ],
-  plugins: ["@typescript-eslint", "import"],
+  plugins: ['@typescript-eslint', 'prettier'],
+  ignorePatterns: ['lib'],
   rules: {
-    quotes: ["error", "double"],
-    "import/no-unresolved": 0,
-    indent: ["error", 2],
+    camelcase: 'error',
+    'spaced-comment': 'error',
+    quotes: ['error', 'single'],
+    'no-duplicate-imports': 'error',
   },
-};
+}

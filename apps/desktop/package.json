@@ -25,8 +25,6 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.37.1",
-    "@types/eslint": "^8",
-    "@types/prettier": "^3",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@types/uuid": "^9",
@@ -42,7 +40,6 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "latest",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.1.6",
