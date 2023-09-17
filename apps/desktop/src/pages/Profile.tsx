@@ -1,11 +1,8 @@
 import { collection, getDocs } from "firebase/firestore/lite";
-import { app, db } from "../firebase";
+import { db, storage } from "../firebase";
 import { useEffect, useState } from "react";
 
-import { getStorage, ref, uploadBytes } from "firebase/storage";
-
-const storage = getStorage(app);
-// todo: this needs to include the full file name and extension
+import { ref, uploadBytes } from "firebase/storage";
 
 async function getTranscripts(db: any) {
   const transcriptsCollection = collection(db, "transcripts");
@@ -14,16 +11,18 @@ async function getTranscripts(db: any) {
   return transcriptionList;
 }
 
-const Profile = () => {
+import { AppShell } from "@/components/shell/AppShell";
+import { PageTitle } from "@/components/shell/PageTitle";
+
+export const Profile = () => {
   useEffect(() => {
     getTranscripts(db).then((data) => console.log(data));
   }, []);
 
   const [file, setFile] = useState<File | null>(null);
-
   return (
-    <div>
-      Profile
+    <AppShell>
+      <PageTitle content="Profile" />
       <input
         type="file"
         onChange={(e) => {
@@ -46,7 +45,6 @@ const Profile = () => {
       >
         Upload
       </button>
-    </div>
+    </AppShell>
   );
 };
-export default Profile;

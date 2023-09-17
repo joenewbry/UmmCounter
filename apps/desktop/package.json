@@ -18,7 +18,8 @@
     "@mantine/hooks": "^6.0.20",
     "@tabler/icons-react": "^2.34.0",
     "electron-updater": "^6.1.1",
-    "firebase": "^10.4.0"
+    "firebase": "^10.4.0",
+    "react-router-dom": "^6.16.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.37.1",
