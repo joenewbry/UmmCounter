@@ -1,10 +1,10 @@
-import { AppShell } from "@/components/shell/AppShell";
-import { PageTitle } from "@/components/shell/PageTitle";
+import { AppShell } from '@/components/shell/AppShell'
+import { PageTitle } from '@/components/shell/PageTitle'
 
 export const Insights = () => {
   return (
     <AppShell>
-      <PageTitle content="Insights" />
+      <PageTitle content='Insights' />
     </AppShell>
-  );
-};
+  )
+}

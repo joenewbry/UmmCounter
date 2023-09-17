@@ -1,25 +1,25 @@
-import { Profile } from "../pages/Profile";
-import { Meetings } from "../pages/Meetings";
-import { Insights } from "../pages/Insights";
-import { Billing } from "../pages/Billing";
+import { Profile } from '../pages/Profile'
+import { Meetings } from '../pages/Meetings'
+import { Insights } from '../pages/Insights'
+import { Billing } from '../pages/Billing'
 
-import { createHashRouter } from "react-router-dom";
+import { createHashRouter } from 'react-router-dom'
 
 export const routes = createHashRouter([
   {
-    path: "/",
+    path: '/',
     element: <Profile />,
   },
   {
-    path: "/meetings",
+    path: '/meetings',
     element: <Meetings />,
   },
   {
-    path: "/insights",
+    path: '/insights',
     element: <Insights />,
   },
   {
-    path: "/billing",
+    path: '/billing',
     element: <Billing />,
   },
-]);
+])
