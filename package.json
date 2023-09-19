@@ -29,10 +29,11 @@
     "@manypkg/cli": "^0.21.0",
     "@types/eslint": "^8",
     "@types/prettier": "^3",
+    "electron": "^26.2.1",
     "eslint": "^8.49.0",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.3",
-    "turbo": "^1.10.14"
+    "turbo": "1.10.4"
   }
 }

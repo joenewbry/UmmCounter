@@ -83,12 +83,34 @@ app
   .whenReady()
   .then(createWindow)
   .then(() => {
-    const tray = new Tray('electron/sunTemplate.png')
+    const tray = new Tray('electron/ToolbarIconRecordingTemplate.png')
     const contextMenu = Menu.buildFromTemplate([
-      { label: 'Item1', type: 'radio' },
-      { label: 'Item2', type: 'radio' },
-      { label: 'Item3', type: 'radio', checked: true },
-      { label: 'Item4', type: 'radio' },
+      { label: 'Start/Stop', type: 'radio' },
+      { label: 'View Most Recent Meeting', type: 'radio' },
+      { label: 'View Weekly Summary', type: 'radio' },
+      { label: 'View Month', type: 'radio' },
+      {
+        label: 'Debug - Set Tray Icon Recording',
+        type: 'radio',
+        click() {
+          tray.setImage('electron/ToolbarIconRecordingTemplate.png')
+        },
+      },
+      {
+        label: 'Debug - Set Tray Icon Warning',
+        type: 'radio',
+        click() {
+          tray.setImage('electron/ToolbarIconWarningTemplate.png')
+        },
+      },
+      {
+        label: 'Debug - Set Tray Icon Standard',
+        type: 'radio',
+        click() {
+          tray.setImage('electron/ToolbarIconV3Template.png')
+        },
+      },
+      { label: 'Debug - Display Notification', type: 'radio' },
     ])
     tray.setToolTip('This is my application.')
     tray.setContextMenu(contextMenu)
